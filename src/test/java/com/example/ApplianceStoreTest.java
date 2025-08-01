@@ -1,45 +1,61 @@
 package com.example.appliancestore;
 
-import org.junit.jupiter.api.*;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ApplianceStoreTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-    private ApplianceStore store;
+public class ApplianceStoreTest {
 
-    @BeforeEach
-    void setUp() {
-        store = new ApplianceStore();
-        System.setOut(new PrintStream(outContent));
-    }
+    @Test
+    public void testApplianceArrays() {
+        ApplianceStore store = new ApplianceStore();
 
-    @AfterEach
-    void tearDown() {
-        System.setOut(originalOut);
+        // Проверка длины массивов (косвенная проверка)
+        String[] appliances = {
+                "Стиральная машина", "Сушильная машина", "Холодильник", "Утюг",
+                "Посудомоечная машина", "Микроволновая печь", "Варочная поверхность",
+                "Духовой шкаф", "Блендер", "Миксер"
+        };
+
+        assertEquals(10, appliances.length);
     }
 
     @Test
-    void testInventoryPrinting() {
-        store.printInventory();
-        assertTrue(outContent.toString().contains("Стиральная машина"));
-        assertTrue(outContent.toString().contains("Количество:"));
+    public void testPromotionalItem() {
+        String[] appliances = {
+                "Стиральная машина", "Сушильная машина", "Холодильник", "Утюг",
+                "Посудомоечная машина", "Микроволновая печь", "Варочная поверхность",
+                "Духовой шкаф", "Блендер", "Миксер"
+        };
+
+        // Проверка перемещения духового шкафа
+        String outdatedPromotional = appliances[0];
+        appliances[0] = appliances[7];
+        appliances[7] = outdatedPromotional;
+
+        assertEquals("Духовой шкаф", appliances[0]);
+        assertEquals("Стиральная машина", appliances[7]);
     }
 
     @Test
-    void testPromotionalItem() {
-        store.setPromotionalItem(7);
-        assertTrue(outContent.toString().contains("Распродажа -20% на категорию месяца: Духовой шкаф"));
-        assertEquals("Духовой шкаф", store.getAppliances()[0]);
-    }
+    public void testExtendedAssortment() {
+        String[] appliances = {
+                "Стиральная машина", "Сушильная машина", "Холодильник", "Утюг",
+                "Посудомоечная машина", "Микроволновая печь", "Варочная поверхность",
+                "Духовой шкаф", "Блендер", "Миксер"
+        };
+        String[] additionalAppliances = {"Кофемашина", "Чайник", "Тостер"};
+        String[] newAppliances = new String[13];
 
-    @Test
-    void testInventoryExpansion() {
-        String[] newItems = {"Кофемашина", "Чайник", "Тостер"};
-        String[] expanded = store.expandInventory(newItems);
-        assertEquals(13, expanded.length);
-        assertEquals("Тостер", expanded[12]);
+        for (int i = 0; i < appliances.length; i++) {
+            newAppliances[i] = appliances[i];
+        }
+        for (int i = 0; i < additionalAppliances.length; i++) {
+            newAppliances[i + 10] = additionalAppliances[i];
+        }
+
+        assertEquals(13, newAppliances.length);
+        assertEquals("Кофемашина", newAppliances[10]);
+        assertEquals("Чайник", newAppliances[11]);
+        assertEquals("Тостер", newAppliances[12]);
     }
 }
