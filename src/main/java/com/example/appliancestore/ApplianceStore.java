@@ -18,7 +18,7 @@ public class ApplianceStore {
                 "Миксер"
         };
 
-        int[] amount = new int[10];
+        int[] amount = new int[appliances.length];
         Random random = new Random();
 
         for (int i = 0; i < amount.length; i++) {
@@ -39,14 +39,10 @@ public class ApplianceStore {
 
         // Задача 3: Расширение ассортимента
         String[] additionalAppliances = {"Кофемашина", "Чайник", "Тостер"};
-        String[] newAppliances = new String[13];
+        String[] newAppliances = new String[appliances.length + additionalAppliances.length];
 
-        for (int i = 0; i < appliances.length; i++) {
-            newAppliances[i] = appliances[i];
-        }
-        for (int i = 0; i < additionalAppliances.length; i++) {
-            newAppliances[i + 10] = additionalAppliances[i];
-        }
+        System.arraycopy(appliances, 0, newAppliances, 0, appliances.length);
+        System.arraycopy(additionalAppliances, 0, newAppliances, appliances.length, additionalAppliances.length);
 
         System.out.println("\n=== Новый ассортимент ===");
         for (String appliance : newAppliances) {
