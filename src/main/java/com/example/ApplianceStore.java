@@ -42,7 +42,10 @@ public class ApplianceStore {
         String[] expanded = new String[appliances.length + newItems.length];
         System.arraycopy(appliances, 0, expanded, 0, appliances.length);
         System.arraycopy(newItems, 0, expanded, appliances.length, newItems.length);
-        this.appliances = expanded;
         return expanded;
+    }
+
+    public String[] getAppliances() {
+        return appliances;
     }
 }
