@@ -29,18 +29,11 @@ mvn exec:java -Dexec.mainClass="com.example.appliancestore.ApplianceStore"
 ```
 appliance-store/
 ├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── com/
-│   │           └── example/
-│   │               └── appliancestore/
-│   │                   └── ApplianceStore.java
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── example/
-│                   └── appliancestore/
-│                       └── ApplianceStoreTest.java
+│   ├── main/java/com/example/
+│   │   └── appliancestore/
+│   │   └── ApplianceStore.java
+│   └── test/java/com/example/appliancestore/
+│       └── ApplianceStoreTest.java
 ├── LICENSE
 ├── README.md
 └── pom.xml
