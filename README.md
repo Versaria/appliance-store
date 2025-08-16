@@ -41,7 +41,8 @@ appliance-store/
 │               └── example/
 │                   └── appliancestore/
 │                       └── ApplianceStoreTest.java
-├── target/
+├── LICENSE
+├── README.md
 └── pom.xml
 ```
 
